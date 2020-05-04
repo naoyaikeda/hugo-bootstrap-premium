@@ -9,7 +9,9 @@
   {{ partial "base/metas.html" . }}
   {{ partial "base/imports.html" . }}
   {{ template "_internal/google_analytics_async.html" . }}
-  <script data-ad-client="ca-pub-7944965323943421" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  {{ if $.Site.IsServer }}
+  <script data-ad-client="{{ .Site.Params.googleAdClient }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  {{ end }}
 </head>
 <body{{ with .Site.Params.theme }} class="{{ . }}"{{ end }} data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
     {{ partial "base/header.html" . }}
